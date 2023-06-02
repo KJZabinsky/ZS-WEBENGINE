@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google</title>
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #6200ee;
+            font-size: 40px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        p {
+            color: #666;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        /* Search bar styles */
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .search-bar input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 20px 0 0 20px;
+            border: none;
+        }
+        
+        .search-bar button {
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 0 20px 20px 0;
+        }
+        
+        .search-bar button:hover {
+            background-color: #3a77db;
+        }
+        
+        /* Hamburger menu styles */
+        .hamburger {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #757575;
+            margin-bottom: 4px;
+        }
+        
+        /* Hamburger menu pop-out styles */
+        .apps-list {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 10px;
+            display: none;
+            z-index: 1;
+        }
+        
+        .apps-list a {
+            display: block;
+            padding: 8px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .apps-list a:hover {
+            background-color: #f2f2f2;
+        }
+        
+        /* Dark mode toggle button styles */
+        .dark-mode-toggle {
+            background-color: gray;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .dark-mode-toggle:hover {
+            background-color: #5700cc;
+        }
+        
+        /* Google logo styles */
+        .google-logo {
+            display: inline-block;
+            color: #6200ee;
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        /* Google apps list styles */
+        .apps-list {
+            position: absolute;
+            top: 40%;
+            right: 5%;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 10px;
+            display: none;
+            z-index: 1;
+        }
+        
+        .apps-list a {
+            display: block;
+            padding: 8px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .apps-list a:hover {
+            background-color: #f2f2f2;
+        }
+        
+        /* Gmail button styles */
+        .gmail-button {
+            background-color: #db4437;
+            color: #fff;
+        }
+        
+        .gmail-button:hover {
+            background-color: #c23a30;
+        }
+        
+        /* Google Classroom button styles */
+        .gc-button {
+            background-color: #4285f4;
+            color: #fff;
+        }
+        
+        .gc-button:hover {
+            background-color: #3a77db;
+        }
+        
+        /* YouTube button styles */
+        .yt-button {
+            background-color: #ff0000;
+            color: #fff;
+        }
+        
+        .yt-button:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="hamburger" onclick="toggleAppsList()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <center><span class="google-logo">Z Search</span>
+    </div>
+    
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search Google or type a URL">
+            <button onclick="searchGoogle()">Google Search</button>
+        </div>
+        
+        <center><p>The Fast and Secure Web Engine.<p/><div class="link-buttons">
+            <a href="https://mail.google.com/" class="logo-shortcut">
+                <img src="gmail_logo.png" alt="">
+                Gmail
+            </a>
+            <br>
+            <br>
+            <a href="https://classroom.google.com/" class="logo-shortcut">
+                <img src="google_classroom_logo.png" alt="">
+                Google Classroom
+            </a>
+            <br>
+            <br>
+            <a href="https://www.youtube.com/" class="logo-shortcut">
+                <img src="youtube_logo.png" alt="">
+                YouTube
+            </a>
+        </div>
+        
+        <center><div class="apps-list" id="appsList">
+            <a href="#">Gmail</a>
+            <a href="#">Google Drive</a>
+            <a href="#">Google Calendar</a>
+            <a href="#">Google Photos</a>
+        </div>
+    </div>
+    
+    <script>
+        // Google search
+        function searchGoogle() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value;
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.location.href = searchUrl;
+        }
+        
+        // Toggle Google apps list
+        function toggleAppsList() {
+            const appsList = document.getElementById('appsList');
+            appsList.style.display = appsList.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
